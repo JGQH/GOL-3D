@@ -21,7 +21,6 @@ In 2D, the default would be B3/S23 (\[Cells are\] born if surrounded by 3 cells,
 \* *No images yet* \*
 
 ## To-Do
-- Add many cubes to Canvas using variables
 - GOL's basic logic 
 - Controlers for GOL's "born" and "survive" constants
 - \* *To be expanded* \*

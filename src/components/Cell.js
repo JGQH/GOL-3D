@@ -1,8 +1,8 @@
-const Cell = () => {
+const Cell = ({position, isAlive}) => {
     return (
-    <mesh>
+    <mesh position={position}>
         <boxBufferGeometry attach="geometry" />
-        <meshLambertMaterial attach="material" color="#00FF00" />
+        <meshLambertMaterial attach="material" color="#00FF00" opacity={isAlive ? 1 : 0} transparent={!isAlive} />
     </mesh>);
 }
 
