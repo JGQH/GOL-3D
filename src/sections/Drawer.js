@@ -7,7 +7,7 @@ const Drawer = ({ grid }) => {
     <Canvas>
         <OrbitControls />
         <ambientLight intensity={0.5}  />
-        <spotLight position={[10, 10, 10]} angle={0.3} />
+        <spotLight position={[5 + grid.size, 7 + grid.size , 9 + grid.size]} angle={0.3} />
         {grid.map((cell, n) => {
             const position = [cell.i - grid.shifter, cell.j - grid.shifter, cell.k - grid.shifter];
 

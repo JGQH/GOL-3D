@@ -1,5 +1,5 @@
 class Grid {
-    constructor(size) {
+    constructor(size, prob) {
         this.size = size;
         this.shifter = (size - 1) / 2;
     
@@ -10,7 +10,7 @@ class Grid {
                     j: j,
                     k: k,
         
-                    isAlive: Math.random() > 0.75,
+                    isAlive: Math.random() > prob,
                     reAlive: false
                 }));
             })
