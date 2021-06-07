@@ -2,16 +2,13 @@ import { useState } from 'react';
 
 import Grid from './aux/Grid'
 import Drawer from './sections/Drawer';
-import Controller from './sections/Controller';
+import Controller, { initialState } from './sections/Controller';
 
 const App = () => {
-  const [grid, setGrid] = useState(new Grid(5, 0.75));
+  const [grid, setGrid] = useState(new Grid(initialState));
 
   function doGrid(data) {
-    const { size, prob } = data;
-    const [ rSize, rProb ] = [parseInt(size), parseInt(prob) / 100]
-
-    const newGrid = new Grid(rSize, rProb);
+    const newGrid = new Grid(data);
     setGrid(newGrid);
   }
 

@@ -1,5 +1,7 @@
 class Grid {
-    constructor(size, prob) {
+    constructor(state) {
+        const { size, prob } = state;
+
         this.size = size;
         this.shifter = (size - 1) / 2;
     
@@ -10,7 +12,7 @@ class Grid {
                     j: j,
                     k: k,
         
-                    isAlive: Math.random() > prob,
+                    isAlive: Math.random() > (prob / 100),
                     reAlive: false
                 }));
             })
