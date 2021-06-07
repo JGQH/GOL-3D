@@ -1,24 +1,37 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 
-import Grid from './aux/Grid'
+import { useGrid } from './aux/Grid'
 import Drawer from './sections/Drawer';
 import Controller, { initialState } from './sections/Controller';
+import { useToggle } from './aux/hooks';
 
 const App = () => {
-  const [grid, setGrid] = useState(new Grid(initialState));
+  const { size, shifter, rebuild, map, update } = useGrid(initialState);
+  const [isAnimating, switchAnimation] = useToggle(false);
 
-  function doGrid(data) {
-    const newGrid = new Grid(data);
-    setGrid(newGrid);
+  function doGrid(newState) {
+    switchAnimation(false);
+
+    rebuild(newState);
   }
+
+  useEffect(() => {
+    if(isAnimating) {
+      const doAnimation = setInterval(() => {
+        update();
+      }, 500);
+
+      return () => clearInterval(doAnimation);
+    }
+  }, [isAnimating]);
 
   return (
   <>
     <div className="gol-drawer">
-      <Drawer grid={grid} />
+      <Drawer {...{size, shifter, map}} />
     </div>
     <div className="gol-controller">
-      <Controller doGrid={doGrid} />
+      <Controller {...{isAnimating, switchAnimation, doGrid}} />
     </div>
   </>);
 }

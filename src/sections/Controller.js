@@ -18,7 +18,7 @@ function reducer(data, action) {
     return newData;
 }
 
-const Controller = ({ doGrid }) => {
+const Controller = ({ isAnimating, switchAnimation, doGrid }) => {
     const [ data, dispatch ] = useReducer(reducer, initialState);
 
     function doDispatch(prop, val) {
@@ -46,6 +46,7 @@ const Controller = ({ doGrid }) => {
             <input type="range" value={data.slt} min={data.sgt} max={15} onChange={e => doDispatch("slt", e.target.value)} />
         </div>
         <div>
+            <button onClick={() => switchAnimation()}>{isAnimating ? "Pause" : "Play"}</button>
             <button onClick={() => doGrid(data)} >Apply changes</button>
         </div>
     </>)
