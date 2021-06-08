@@ -35,6 +35,14 @@ export const useGrid = (state) => {
     }
 }
 
+function randomColor() {
+    const R = Math.floor(Math.random() * 256);
+    const G = Math.floor(Math.random() * 256);
+    const B = Math.floor(Math.random() * 256);
+
+    return { R, G, B }
+}
+
 function createCells(size, prob) {
     return [...new Array(size)].map((_, i) => {
         return [...new Array(size)].map((__, j) => {
@@ -43,6 +51,7 @@ function createCells(size, prob) {
                 j:j,
                 k:k,
 
+                color: randomColor(),
                 isAlive: Math.random() > prob,
                 reAlive: false
             }));
@@ -66,7 +75,9 @@ function checkCells(cells, data) {
 
     loopCells(cells, cell => {
         const { i, j, k } = cell;
-        const count = surroundingCells(i, j, k, cells);
+
+        const surroundings = surroundingCells(i, j, k, cells);
+        const count = surroundings.length;
 
         //Updating the cell
         if(cell.isAlive) {
@@ -75,6 +86,23 @@ function checkCells(cells, data) {
         }
 
         cell.reAlive = (bgt <= count) && (count <= blt);
+        if(cell.reAlive) {
+            const colors = surroundings.map(cell => cell.color);
+
+            let [R, G, B] = [0, 0, 0]
+
+            for(const color of colors) {
+                R += color.R;
+                G += color.G;
+                B += color.B;
+            }
+
+            R /= count;
+            G /= count;
+            B /= count;
+
+            cell.color = { R, G, B };
+        }
     });
 }
 
@@ -133,5 +161,5 @@ function surroundingCells(i, j, k, cells) {
     surroundings.push(getCell(i - 1, j - 1, k, cells));
     surroundings.push(getCell(i - 1, j - 1, k - 1, cells));
 
-    return surroundings.filter(cell => cell.isAlive).length;
+    return surroundings.filter(cell => cell.isAlive);
 }

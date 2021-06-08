@@ -22,5 +22,4 @@ In 2D, the default would be B3/S23 (\[Cells are\] born if surrounded by 3 cells,
 
 ## To-Do
 - CSS Style for visual improvement
-- Dynamic color for cubes
 - \* *To be expanded* \*
