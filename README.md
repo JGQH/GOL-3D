@@ -21,5 +21,4 @@ In 2D, the default would be B3/S23 (\[Cells are\] born if surrounded by 3 cells,
 \* *No images yet* \*
 
 ## To-Do
-- CSS Style for visual improvement
-- \* *To be expanded* \*
+-

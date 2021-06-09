@@ -27,6 +27,9 @@ const Controller = ({ isAnimating, switchAnimation, doGrid }) => {
 
     return (
     <>
+        <div className="gol-title gol-control">
+            <h1>Conway's Game of Life</h1>
+        </div>
         <div className="gol-size gol-control">
             <p>Size of grid: {data.size}</p>
             <input type="range" value={data.size} min={5} max={15} onChange={e => doDispatch("size", e.target.value)} />
@@ -45,7 +48,7 @@ const Controller = ({ isAnimating, switchAnimation, doGrid }) => {
             <input type="range" value={data.sgt} min={3} max={data.slt} onChange={e => doDispatch("sgt", e.target.value)} />
             <input type="range" value={data.slt} min={data.sgt} max={15} onChange={e => doDispatch("slt", e.target.value)} />
         </div>
-        <div>
+        <div className="gol-setter gol-control">
             <button onClick={() => switchAnimation()}>{isAnimating ? "Pause" : "Play"}</button>
             <button onClick={() => doGrid(data)} >Apply changes</button>
         </div>
